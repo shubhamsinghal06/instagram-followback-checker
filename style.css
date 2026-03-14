@@ -1,82 +1,151 @@
-body {
-font-family: system-ui, Arial;
-background: #f4f6f8;
-margin: 0;
-padding: 0;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-.container {
-max-width: 700px;
-margin: auto;
-padding: 20px;
+body{
+
+font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial;
+
+background:linear-gradient(135deg,#ff7e5f,#fd3a84);
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
 }
 
-h1 {
-text-align: center;
-margin-bottom: 10px;
+.container{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+width:100%;
+
+max-width:500px;
+
+box-shadow:0 25px 60px rgba(0,0,0,0.3);
+
 }
 
-.subtitle {
-text-align: center;
-color: #555;
-margin-bottom: 25px;
+h1{
+
+text-align:center;
+
+margin-bottom:5px;
+
 }
 
-.card {
-background: white;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-margin-bottom: 25px;
+.subtitle{
+
+text-align:center;
+
+color:#777;
+
+margin-bottom:25px;
+
+font-size:14px;
+
 }
 
-.upload {
-margin-bottom: 15px;
+.file-box{
+
+margin-bottom:15px;
+
 }
 
-label {
-display: block;
-margin-bottom: 5px;
-font-weight: 600;
+input{
+
+width:100%;
+
+padding:10px;
+
+border-radius:8px;
+
+border:1px solid #ddd;
+
+background:#fafafa;
+
 }
 
-input[type=file] {
-width: 100%;
+button{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:30px;
+
+background:#fd3a84;
+
+color:white;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+margin-top:15px;
+
 }
 
-button {
-width: 100%;
-padding: 12px;
-font-size: 16px;
-background: #1877f2;
-color: white;
-border: none;
-border-radius: 6px;
-cursor: pointer;
+button:disabled{
+
+background:#ccc;
+
+cursor:not-allowed;
+
 }
 
-button:hover {
-background: #0f63d8;
+#results{
+
+margin-top:25px;
+
 }
 
-.results {
-background: white;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+ul{
+
+list-style:none;
+
+max-height:300px;
+
+overflow:auto;
+
+border-top:1px solid #eee;
+
 }
 
-ul {
-list-style: none;
-padding: 0;
-margin: 0;
+li{
+
+padding:10px;
+
+border-bottom:1px solid #eee;
+
+display:flex;
+
+justify-content:space-between;
+
 }
 
-li {
-padding: 10px;
-border-bottom: 1px solid #eee;
-}
+.profile{
 
-li:last-child {
-border-bottom: none;
+color:#fd3a84;
+
+text-decoration:none;
+
+font-size:13px;
+
 }
