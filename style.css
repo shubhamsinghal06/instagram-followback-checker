@@ -1,0 +1,28 @@
+body {
+font-family: Arial, sans-serif;
+max-width: 700px;
+margin: 40px auto;
+line-height: 1.6;
+}
+
+h1 {
+text-align: center;
+}
+
+.upload {
+margin-bottom: 20px;
+}
+
+button {
+padding: 10px 20px;
+cursor: pointer;
+}
+
+ul {
+margin-top: 20px;
+}
+
+li {
+padding: 5px 0;
+border-bottom: 1px solid #eee;
+}
