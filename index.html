@@ -1,130 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Instagram Followback Checker</title>
+<title>Instagram Analyzer</title>
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial;
-background:linear-gradient(135deg,#f09433,#bc1888);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.container{
-max-width:800px;
-width:100%;
-background:white;
-border-radius:20px;
-box-shadow:0 20px 60px rgba(0,0,0,0.3);
-overflow:hidden;
-}
-
-.header{
-background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
-color:white;
-padding:30px;
-text-align:center;
-}
-
-.header h1{
-font-size:28px;
-margin-bottom:8px;
-}
-
-.header p{
-font-size:14px;
-opacity:0.9;
-}
-
-.upload-section{
-padding:40px;
-text-align:center;
-}
-
-.upload-box{
-border:3px dashed #ddd;
-border-radius:15px;
-padding:50px 20px;
-cursor:pointer;
-background:#fafafa;
-transition:0.3s;
-}
-
-.upload-box:hover{
-border-color:#e1306c;
-background:#fff0f5;
-}
-
-.upload-icon{
-font-size:60px;
-margin-bottom:15px;
-}
-
-input{
-display:block;
-margin:10px auto;
-}
-
-button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-border-radius:25px;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-background:#e1306c;
-color:white;
-transition:0.3s;
-}
-
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-}
-
-.results{
-padding:30px;
-border-top:1px solid #eee;
-max-height:400px;
-overflow:auto;
-}
-
-.results h2{
-margin-bottom:15px;
-}
-
-ul{
-list-style:none;
-}
-
-li{
-padding:8px;
-border-bottom:1px solid #eee;
-}
-
-.status{
-margin-top:15px;
-font-size:14px;
-color:#666;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -132,111 +15,26 @@ color:#666;
 
 <div class="container">
 
-<div class="header">
-<h1>📸 Instagram Followback Checker</h1>
-<p>Find users who do not follow you back</p>
+<h1>Instagram Analyzer</h1>
+<p class="subtitle">Find users who don't follow you back</p>
+
+<div class="file-box">
+<label>Upload following.html</label>
+<input type="file" id="followingFile" accept=".html">
 </div>
 
-<div class="upload-section">
+<div class="file-box">
+<label>Upload followers files</label>
+<input type="file" id="followersFiles" accept=".html" multiple>
+</div>
 
-<div class="upload-box">
+<button id="analyzeBtn">Analyze</button>
 
-<div class="upload-icon">📁</div>
-
-<p>Upload your Instagram export files</p>
-
-<input type="file" id="followersFile">
-<input type="file" id="followingFile">
-
-<button onclick="analyze()">Analyze</button>
-
-<div class="status" id="status"></div>
+<div id="results"></div>
 
 </div>
 
-</div>
-
-<div class="results">
-
-<h2>Users not following you back</h2>
-
-<ul id="result"></ul>
-
-</div>
-
-</div>
-
-<script>
-
-async function analyze(){
-
-const followersFile=document.getElementById("followersFile").files[0];
-const followingFile=document.getElementById("followingFile").files[0];
-const status=document.getElementById("status");
-
-if(!followersFile||!followingFile){
-status.innerText="Upload both followers and following files";
-return;
-}
-
-status.innerText="Reading files...";
-
-const followers=await parseFile(followersFile);
-const following=await parseFile(followingFile);
-
-const notFollowingBack=following.filter(u=>!followers.includes(u));
-
-display(notFollowingBack);
-
-status.innerText="Found "+notFollowingBack.length+" users not following you back";
-
-}
-
-async function parseFile(file){
-
-const text=await file.text();
-
-if(file.name.endsWith(".json")){
-
-const data=JSON.parse(text);
-
-let users=[];
-
-data.forEach(item=>{
-if(item.string_list_data){
-users.push(item.string_list_data[0].value);
-}
-});
-
-return users;
-
-}
-
-const parser=new DOMParser();
-const doc=parser.parseFromString(text,"text/html");
-
-return [...doc.querySelectorAll("a")].map(a=>a.textContent.trim());
-
-}
-
-function display(users){
-
-const list=document.getElementById("result");
-
-list.innerHTML="";
-
-users.forEach(u=>{
-
-const li=document.createElement("li");
-li.textContent=u;
-
-list.appendChild(li);
-
-});
-
-}
-
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
