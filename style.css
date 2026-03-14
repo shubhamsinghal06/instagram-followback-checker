@@ -116,11 +116,25 @@ margin-top:25px;
 
 }
 
+.stats{
+
+background:#f5f5f5;
+
+padding:12px;
+
+border-radius:10px;
+
+margin-bottom:15px;
+
+font-size:14px;
+
+}
+
 ul{
 
 list-style:none;
 
-max-height:300px;
+max-height:350px;
 
 overflow:auto;
 
@@ -128,24 +142,24 @@ border-top:1px solid #eee;
 
 }
 
-li{
+.profile-link{
 
-padding:10px;
+display:block;
+
+padding:12px;
 
 border-bottom:1px solid #eee;
 
-display:flex;
-
-justify-content:space-between;
-
-}
-
-.profile{
+text-decoration:none;
 
 color:#fd3a84;
 
-text-decoration:none;
+font-weight:600;
 
-font-size:13px;
+}
+
+.profile-link:hover{
+
+background:#fafafa;
 
 }
