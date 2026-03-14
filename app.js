@@ -12,13 +12,31 @@ const links = doc.querySelectorAll("a");
 
 const users = new Set();
 
-links.forEach(link => {
+links.forEach(link=>{
 
-const name = link.textContent.trim().toLowerCase();
+const href = link.getAttribute("href");
 
-if(name){
+if(!href) return;
 
-users.add(name);
+let username="";
+
+if(href.includes("instagram.com")){
+
+username = href.split("instagram.com/")[1];
+
+}
+
+if(href.includes("/_u/")){
+
+username = href.split("/_u/")[1];
+
+}
+
+username = username.replace("/","").toLowerCase();
+
+if(username){
+
+users.add(username);
 
 }
 
@@ -34,17 +52,17 @@ const followingFile = document.getElementById("followingFile").files[0];
 
 const followerFiles = document.getElementById("followersFiles").files;
 
-if(!followingFile || followerFiles.length === 0){
+if(!followingFile || followerFiles.length===0){
 
-alert("Upload following.html and followers files");
+alert("Upload following file and followers files");
 
 return;
 
 }
 
-analyzeBtn.disabled = true;
+analyzeBtn.disabled=true;
 
-analyzeBtn.textContent = "Analyzing...";
+analyzeBtn.textContent="Analyzing...";
 
 try{
 
@@ -60,13 +78,13 @@ const html = await file.text();
 
 const users = extractUsernames(html);
 
-users.forEach(u => followers.add(u));
+users.forEach(u=>followers.add(u));
 
 }
 
-const notFollowingBack = [];
+const notFollowingBack=[];
 
-following.forEach(user => {
+following.forEach(user=>{
 
 if(!followers.has(user)){
 
@@ -85,45 +103,44 @@ alert("Error reading files");
 
 }
 
-analyzeBtn.disabled = false;
+analyzeBtn.disabled=false;
 
-analyzeBtn.textContent = "Analyze";
+analyzeBtn.textContent="Analyze";
 
 }
 
 function renderResults(following,followers,notFollowingBack){
 
-const results = document.getElementById("results");
+const results=document.getElementById("results");
 
-let html = "";
+let html="";
 
-html += `
-<div>
+html+=`
+<div class="stats">
 <b>Following:</b> ${following.size}<br>
 <b>Followers:</b> ${followers.size}<br>
 <b>Not following back:</b> ${notFollowingBack.length}
 </div>
 `;
 
-html += "<h3>Users not following you back</h3>";
+html+=`<h3>Users not following you back</h3>`;
 
-html += "<ul>";
+html+=`<ul>`;
 
-notFollowingBack.forEach(user => {
+notFollowingBack.forEach(user=>{
 
-html += `
+html+=`
 <li>
-<span>${user}</span>
-<a class="profile" target="_blank" href="https://instagram.com/${user}">
-Open
+<a class="profile-link" target="_blank" href="https://instagram.com/${user}">
+@${user}
 </a>
 </li>
 `;
 
 });
 
-html += "</ul>";
+html+=`</ul>`;
 
-results.innerHTML = html;
+results.innerHTML=html;
 
 }
