@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <title>Instagram Followback Checker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>Instagram Followback Checker</h1>
 
-<p>Upload the following files from your Instagram data export:</p>
+<p class="subtitle">
+Upload your Instagram export files to find accounts that do not follow you back.
+</p>
 
-<label>followers_1.html or followers.json</label>
+<div class="card">
+
+<div class="upload">
+<label>Followers file</label>
 <input type="file" id="followersFile">
+</div>
 
-<br><br>
-
-<label>following.html or following.json</label>
+<div class="upload">
+<label>Following file</label>
 <input type="file" id="followingFile">
-
-<br><br>
+</div>
 
 <button id="analyzeBtn">Analyze</button>
 
-<h2>Users not following you back</h2>
+</div>
+
+<div class="results">
+
+<h2>Not Following You Back</h2>
+
 <ul id="result"></ul>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
